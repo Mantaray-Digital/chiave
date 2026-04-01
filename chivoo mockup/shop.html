@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiave Shop — Khaled Sorour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="home.html" class="nav-logo">KS</a>
+        <ul class="nav-links">
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+            <li><a href="arthaus.html">Arthaus</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="studio.html">Chiave Studio</a>
+            <a href="shop.html">Chiave Shop</a>
+            <a href="arthaus.html">Arthaus Egypt</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="chiave.shop/Screenshot 2026-03-26 144506.png" alt="Chiave Shop">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-grain"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-number">02 &mdash; Curated Objects</span>
+            <h1 class="page-hero-title">Chiave Shop</h1>
+            <p class="page-hero-subtitle">Collectible design, delivered with intention</p>
+            <div class="page-hero-line"></div>
+        </div>
+    </section>
+
+    <!-- Transition into light section -->
+    <div class="section-transition dark-to-light"></div>
+
+    <!-- Content -->
+    <section class="section shop-section shop-page-section">
+        <div class="shop-intro reveal">
+            <p>Each object in our collection is chosen — never curated by algorithm, always by instinct. From limited-edition designer figures to sculptural art toys, the Chiave Shop is a gallery you can take home. These are objects that provoke, delight, and hold their value as both art and conversation.</p>
+        </div>
+
+        <div class="shop-product-grid">
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144343.png" alt="KAWS Companion">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">KAWS Companion</div>
+                    <div class="shop-card-price">Blue Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144354.png" alt="Art Figure">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Figure</div>
+                    <div class="shop-card-price">Limited Series</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144404.png" alt="Sculptural Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculptural Object</div>
+                    <div class="shop-card-price">Exclusive</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144421.png" alt="Designer Toy">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Designer Toy</div>
+                    <div class="shop-card-price">Collector's Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144433.png" alt="Statement Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Statement Piece</div>
+                    <div class="shop-card-price">One of One</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144446.png" alt="Art Collectible">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Collectible</div>
+                    <div class="shop-card-price">Numbered Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144456.png" alt="Gallery Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Gallery Piece</div>
+                    <div class="shop-card-price">Available Now</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144506.png" alt="Sculpted Dogs">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculpted Dogs</div>
+                    <div class="shop-card-price">Full Collection</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144516.png" alt="Figurine">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Figurine</div>
+                    <div class="shop-card-price">Hand-Finished</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144549.png" alt="Designer Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Designer Object</div>
+                    <div class="shop-card-price">Studio Series</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144601.png" alt="Art Toy">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Toy</div>
+                    <div class="shop-card-price">Pre-Order</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144614.png" alt="Miniature Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Miniature Sculpture</div>
+                    <div class="shop-card-price">Limited Run</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144627.png" alt="Collector Item">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Collector Item</div>
+                    <div class="shop-card-price">Signed</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144642.png" alt="Design Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Design Object</div>
+                    <div class="shop-card-price">Exclusive</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144653.png" alt="Art Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Piece</div>
+                    <div class="shop-card-price">Gallery Grade</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144704.png" alt="Limited Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Limited Object</div>
+                    <div class="shop-card-price">Numbered</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144715.png" alt="Studio Collectible">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Studio Collectible</div>
+                    <div class="shop-card-price">New Arrival</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144729.png" alt="Character Figure">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Character Figure</div>
+                    <div class="shop-card-price">First Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144742.png" alt="Vinyl Art">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Vinyl Art</div>
+                    <div class="shop-card-price">Curated</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144754.png" alt="Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculpture</div>
+                    <div class="shop-card-price">Premium</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144809.png" alt="Abstract Form">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Abstract Form</div>
+                    <div class="shop-card-price">Studio Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144831.png" alt="Garden Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Garden Sculpture</div>
+                    <div class="shop-card-price">Outdoor Collection</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144844.png" alt="Decorative Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Decorative Object</div>
+                    <div class="shop-card-price">Handcrafted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (on light bg) -->
+    <div class="section-transition light-to-dark"></div>
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Khaled Sorour</div>
+            <ul class="footer-links">
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="arthaus.html">Arthaus</a></li>
+                <li><a href="playground.html">Playground</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Khaled Sorour. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+    <script src="main.js"></script>
+</body>
+</html>

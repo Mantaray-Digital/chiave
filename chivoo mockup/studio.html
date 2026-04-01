@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiave Studio — Khaled Sorour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged view" id="lightboxImg">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="home.html" class="nav-logo">KS</a>
+        <ul class="nav-links">
+            <li><a href="studio.html" class="active">Studio</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="arthaus.html">Arthaus</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="studio.html">Chiave Studio</a>
+            <a href="shop.html">Chiave Shop</a>
+            <a href="arthaus.html">Arthaus Egypt</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="chiave_studio/Screenshot 2026-03-26 144106.png" alt="Chiave Studio">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-grain"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-number">01 &mdash; Interior &amp; Architecture</span>
+            <h1 class="page-hero-title">Chiave Studio</h1>
+            <p class="page-hero-subtitle">Crafting spaces that speak in silence</p>
+            <div class="page-hero-line"></div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section studio-section">
+        <div class="studio-intro reveal">
+            <p>Every space tells a story. At Chiave Studio, we believe that architecture and interior design are acts of translation — turning invisible emotions, cultural memory, and human needs into physical environments that endure. Our work moves between scales, from urban master plans to the quiet details of a door handle, always guided by the same principle: restraint is a form of generosity.</p>
+        </div>
+
+        <div class="studio-grid">
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143331.png" alt="Design Publication">
+                <div class="studio-item-overlay"><span class="studio-item-label">Design Publication</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143404.png" alt="Urban Vision">
+                <div class="studio-item-overlay"><span class="studio-item-label">Urban Vision</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143921.png" alt="Spatial Study">
+                <div class="studio-item-overlay"><span class="studio-item-label">Spatial Study</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143939.png" alt="Material Exploration">
+                <div class="studio-item-overlay"><span class="studio-item-label">Material Exploration</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143953.png" alt="Interior Concept">
+                <div class="studio-item-overlay"><span class="studio-item-label">Interior Concept</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144006.png" alt="Architectural Detail">
+                <div class="studio-item-overlay"><span class="studio-item-label">Architectural Detail</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144021.png" alt="Form Study">
+                <div class="studio-item-overlay"><span class="studio-item-label">Form Study</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144106.png" alt="Terrain Model">
+                <div class="studio-item-overlay"><span class="studio-item-label">Terrain Model</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144116.png" alt="Composition">
+                <div class="studio-item-overlay"><span class="studio-item-label">Composition</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144135.png" alt="Design System">
+                <div class="studio-item-overlay"><span class="studio-item-label">Design System</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144148.png" alt="Collection">
+                <div class="studio-item-overlay"><span class="studio-item-label">Collection</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144213.png" alt="Art Direction">
+                <div class="studio-item-overlay"><span class="studio-item-label">Art Direction</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144228.png" alt="KAWS Collection">
+                <div class="studio-item-overlay"><span class="studio-item-label">KAWS Collection</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144240.png" alt="Creative Direction">
+                <div class="studio-item-overlay"><span class="studio-item-label">Creative Direction</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144257.png" alt="Vision">
+                <div class="studio-item-overlay"><span class="studio-item-label">Vision</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="contact-teaser reveal">
+        <h2 class="contact-teaser-title">Have a space that needs a soul?</h2>
+        <a href="contact.html" class="contact-teaser-btn">Start a Conversation</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Khaled Sorour</div>
+            <ul class="footer-links">
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="arthaus.html">Arthaus</a></li>
+                <li><a href="playground.html">Playground</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Khaled Sorour. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+    <script src="main.js"></script>
+</body>
+</html>

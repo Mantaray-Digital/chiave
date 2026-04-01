@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chiave.playground — Khaled Sorour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged view" id="lightboxImg">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="home.html" class="nav-logo">KS</a>
+        <ul class="nav-links">
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="arthaus.html">Arthaus</a></li>
+            <li><a href="playground.html" class="active">Playground</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="studio.html">Chiave Studio</a>
+            <a href="shop.html">Chiave Shop</a>
+            <a href="arthaus.html">Arthaus Egypt</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="chivoo.playground/Screenshot 2026-03-26 145351.png" alt="Chiave Playground">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-grain"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-number">04 &mdash; Experimental</span>
+            <h1 class="page-hero-title">Chiave.playground</h1>
+            <p class="page-hero-subtitle">Ideas unbound — where curiosity leads, form follows</p>
+            <div class="page-hero-line"></div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section playground-section">
+        <div class="playground-intro reveal">
+            <p>The playground is where rules dissolve and instinct takes over. This is the experimental arm of Khaled Sorour's practice — a space for ideas that don't yet have a category, for collaborations that challenge convention, and for the raw creative impulse that feeds everything else. Not everything here is finished. That's the point.</p>
+        </div>
+
+        <div class="playground-grid">
+            <div class="playground-item reveal">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145244.png" alt="Studio Branding">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145255.png" alt="Experiment">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145304.png" alt="Creative Study">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145325.png" alt="Concept">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145337.png" alt="Exploration">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145351.png" alt="Pre-Order Figure">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145417.png" alt="Material Study">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145435.png" alt="Vision">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="contact-teaser reveal">
+        <h2 class="contact-teaser-title">Want to collaborate on something unexpected?</h2>
+        <a href="contact.html" class="contact-teaser-btn">Let's Experiment</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Khaled Sorour</div>
+            <ul class="footer-links">
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="arthaus.html">Arthaus</a></li>
+                <li><a href="playground.html">Playground</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Khaled Sorour. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,2044 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khaled Sorour — Creative Director & Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════
+           RESET & FOUNDATION
+           ═══════════════════════════════════════════════ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --charcoal: #1a1a1a;
+            --dark-grey: #2a2a2a;
+            --mid-grey: #4a4a4a;
+            --warm-grey: #8a8278;
+            --sand: #c4b9a8;
+            --cream: #e8e2d8;
+            --warm-white: #f5f0ea;
+            --white: #faf8f5;
+            --gold: #c8a96e;
+            --gold-light: #d4bc8a;
+
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--warm-grey) var(--charcoal);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--cream);
+            overflow-x: hidden;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CUSTOM CURSOR
+           ═══════════════════════════════════════════════ */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s var(--ease-out-expo);
+            mix-blend-mode: difference;
+        }
+
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(200, 169, 110, 0.4);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.4s var(--ease-out-expo), width 0.3s, height 0.3s, border-color 0.3s;
+        }
+
+        .cursor-ring.hovering {
+            width: 60px;
+            height: 60px;
+            border-color: var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════
+           PRELOADER
+           ═══════════════════════════════════════════════ */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .preloader-text {
+            font-family: var(--font-display);
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--sand);
+            animation: preloaderPulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-line {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin-top: 2rem;
+            animation: preloaderExpand 1.5s var(--ease-out-expo) infinite;
+        }
+
+        @keyframes preloaderPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes preloaderExpand {
+            0% { width: 20px; opacity: 0.3; }
+            50% { width: 80px; opacity: 1; }
+            100% { width: 20px; opacity: 0.3; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════════ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.8rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            mix-blend-mode: difference;
+            transition: padding 0.4s ease;
+        }
+
+        .nav.scrolled {
+            padding: 1rem 3rem;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--white);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--white);
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.5s var(--ease-out-expo);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .nav-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--white);
+            margin: 6px 0;
+            transition: all 0.4s var(--ease-out-expo);
+        }
+
+        .nav-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .nav-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.97);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s var(--ease-out-expo);
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu nav {
+            text-align: center;
+        }
+
+        .mobile-menu a {
+            display: block;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            padding: 0.5em 0;
+            color: var(--cream);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s var(--ease-out-expo);
+        }
+
+        .mobile-menu.active a {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.active a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-menu.active a:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-menu.active a:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-menu.active a:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-menu.active a:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-menu.active a:nth-child(6) { transition-delay: 0.35s; }
+
+        /* ═══════════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════════ */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(200, 169, 110, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(200, 169, 110, 0.04) 0%, transparent 50%),
+                var(--black);
+        }
+
+        .hero-grain {
+            position: absolute;
+            inset: -50%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 300;
+            letter-spacing: 0.5em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1.2s var(--ease-out-expo) 0.5s forwards;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 10vw, 9rem);
+            font-weight: 300;
+            letter-spacing: 0.08em;
+            line-height: 0.95;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-name .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-name .line span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+            animation: heroSlideUp 1.4s var(--ease-out-expo) forwards;
+        }
+
+        .hero-name .line:nth-child(1) span { animation-delay: 0.3s; }
+        .hero-name .line:nth-child(2) span { animation-delay: 0.5s; }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--sand);
+            letter-spacing: 0.05em;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: heroReveal 1.2s var(--ease-out-expo) 0.9s forwards;
+        }
+
+        .hero-line {
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            margin: 3rem auto 0;
+            opacity: 0;
+            animation: heroReveal 1.2s var(--ease-out-expo) 1.2s forwards;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 3rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm-grey);
+            writing-mode: vertical-rl;
+            opacity: 0;
+            animation: heroReveal 1.2s var(--ease-out-expo) 1.5s forwards;
+        }
+
+        .hero-scroll::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 30px;
+            background: var(--gold);
+            margin-top: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+            animation: scrollPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes heroSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heroReveal {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { height: 20px; opacity: 0.3; }
+            50% { height: 40px; opacity: 1; }
+        }
+
+        /* ═══════════════════════════════════════════════
+           SECTION COMMON STYLES
+           ═══════════════════════════════════════════════ */
+        .section {
+            padding: clamp(4rem, 10vw, 10rem) 0;
+            position: relative;
+        }
+
+        .section-header {
+            padding: 0 clamp(1.5rem, 5vw, 5rem);
+            margin-bottom: clamp(3rem, 6vw, 6rem);
+        }
+
+        .section-number {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            color: var(--white);
+        }
+
+        .section-subtitle {
+            font-family: var(--font-display);
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 300;
+            font-style: italic;
+            color: var(--warm-grey);
+            margin-top: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .section-divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin-top: 2rem;
+        }
+
+        /* Reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* ═══════════════════════════════════════════════
+           CHIAVE STUDIO — EDITORIAL PORTFOLIO
+           ═══════════════════════════════════════════════ */
+        .studio-section {
+            background: var(--black);
+        }
+
+        .studio-grid {
+            padding: 0 clamp(1rem, 3vw, 3rem);
+            display: grid;
+            gap: clamp(0.8rem, 2vw, 1.5rem);
+        }
+
+        /* Masonry-like layout with CSS grid */
+        .studio-grid {
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: clamp(150px, 20vw, 300px);
+        }
+
+        .studio-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .studio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out-expo), filter 0.8s ease;
+            filter: grayscale(20%) brightness(0.9);
+        }
+
+        .studio-item:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .studio-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.7) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .studio-item:hover .studio-item-overlay {
+            opacity: 1;
+        }
+
+        .studio-item-label {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--cream);
+        }
+
+        /* Grid placement for 15 images */
+        .studio-item:nth-child(1)  { grid-column: 1 / 7;   grid-row: span 2; }
+        .studio-item:nth-child(2)  { grid-column: 7 / 13;  grid-row: span 1; }
+        .studio-item:nth-child(3)  { grid-column: 7 / 10;  grid-row: span 1; }
+        .studio-item:nth-child(4)  { grid-column: 10 / 13; grid-row: span 1; }
+        .studio-item:nth-child(5)  { grid-column: 1 / 5;   grid-row: span 1; }
+        .studio-item:nth-child(6)  { grid-column: 5 / 9;   grid-row: span 2; }
+        .studio-item:nth-child(7)  { grid-column: 9 / 13;  grid-row: span 1; }
+        .studio-item:nth-child(8)  { grid-column: 1 / 5;   grid-row: span 1; }
+        .studio-item:nth-child(9)  { grid-column: 9 / 13;  grid-row: span 1; }
+        .studio-item:nth-child(10) { grid-column: 1 / 7;   grid-row: span 1; }
+        .studio-item:nth-child(11) { grid-column: 7 / 13;  grid-row: span 2; }
+        .studio-item:nth-child(12) { grid-column: 1 / 4;   grid-row: span 1; }
+        .studio-item:nth-child(13) { grid-column: 4 / 7;   grid-row: span 1; }
+        .studio-item:nth-child(14) { grid-column: 1 / 7;   grid-row: span 1; }
+        .studio-item:nth-child(15) { grid-column: 7 / 13;  grid-row: span 1; }
+
+        /* ═══════════════════════════════════════════════
+           CHIAVE SHOP — LUXURY PRODUCT CATALOG
+           ═══════════════════════════════════════════════ */
+        .shop-section {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        .shop-section .section-number { color: var(--gold); }
+        .shop-section .section-title { color: var(--black); }
+        .shop-section .section-subtitle { color: var(--mid-grey); }
+
+        .shop-horizontal {
+            display: flex;
+            gap: clamp(1rem, 2vw, 2rem);
+            padding: 0 clamp(1.5rem, 5vw, 5rem);
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            cursor: grab;
+        }
+
+        .shop-horizontal::-webkit-scrollbar { display: none; }
+        .shop-horizontal.grabbing { cursor: grabbing; }
+
+        .shop-card {
+            flex: 0 0 clamp(260px, 22vw, 340px);
+            scroll-snap-align: start;
+            position: relative;
+            background: var(--warm-white);
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+
+        .shop-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .shop-card-img {
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .shop-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s var(--ease-out-expo);
+        }
+
+        .shop-card:hover .shop-card-img img {
+            transform: scale(1.06);
+        }
+
+        .shop-card-quick {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--white);
+            background: var(--black);
+            padding: 0.7em 2em;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.5s var(--ease-out-expo);
+        }
+
+        .shop-card:hover .shop-card-quick {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .shop-card-info {
+            padding: 1.2rem 0.5rem;
+            text-align: center;
+        }
+
+        .shop-card-name {
+            font-family: var(--font-display);
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: var(--charcoal);
+            margin-bottom: 0.3rem;
+        }
+
+        .shop-card-price {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            color: var(--warm-grey);
+        }
+
+        .shop-scroll-hint {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 2rem clamp(1.5rem, 5vw, 5rem) 0;
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm-grey);
+        }
+
+        .shop-scroll-hint .line {
+            flex: 1;
+            height: 1px;
+            background: var(--sand);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ARTHAUS EGYPT — GALLERY / MUSEUM
+           ═══════════════════════════════════════════════ */
+        .arthaus-section {
+            background: var(--charcoal);
+        }
+
+        .arthaus-gallery {
+            padding: 0 clamp(1.5rem, 5vw, 5rem);
+        }
+
+        .arthaus-piece {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 6rem);
+            align-items: center;
+            margin-bottom: clamp(4rem, 8vw, 10rem);
+        }
+
+        .arthaus-piece:nth-child(even) {
+            direction: rtl;
+        }
+
+        .arthaus-piece:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .arthaus-piece-img {
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .arthaus-piece-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s var(--ease-out-expo);
+        }
+
+        .arthaus-piece:hover .arthaus-piece-img img {
+            transform: scale(1.03);
+        }
+
+        .arthaus-piece-info {
+            padding: 2rem 0;
+        }
+
+        .arthaus-piece-number {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.4em;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .arthaus-piece-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 3.5vw, 3rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .arthaus-piece-desc {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--warm-grey);
+            margin-bottom: 2rem;
+            max-width: 400px;
+        }
+
+        .arthaus-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 0.9em 2.5em;
+            transition: all 0.5s var(--ease-out-expo);
+            cursor: pointer;
+            background: none;
+        }
+
+        .arthaus-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* For remaining pieces: compact two-column gallery */
+        .arthaus-compact {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(100%, 350px), 1fr));
+            gap: clamp(1rem, 2vw, 2rem);
+            margin-top: clamp(2rem, 4vw, 4rem);
+        }
+
+        .arthaus-compact-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .arthaus-compact-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out-expo);
+            filter: brightness(0.85);
+        }
+
+        .arthaus-compact-item:hover img {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        .arthaus-compact-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.8) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .arthaus-compact-item:hover .arthaus-compact-overlay {
+            opacity: 1;
+        }
+
+        .arthaus-compact-name {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .arthaus-compact-cta {
+            font-family: var(--font-body);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════
+           CHIAVE PLAYGROUND — EXPERIMENTAL
+           ═══════════════════════════════════════════════ */
+        .playground-section {
+            background: var(--black);
+            overflow: hidden;
+        }
+
+        .playground-grid {
+            padding: 0 clamp(1rem, 3vw, 3rem);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+            gap: clamp(0.5rem, 1.5vw, 1.2rem);
+        }
+
+        .playground-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .playground-item:nth-child(odd) {
+            aspect-ratio: 3/4;
+        }
+
+        .playground-item:nth-child(even) {
+            aspect-ratio: 4/3;
+        }
+
+        .playground-item:nth-child(3n+1) {
+            aspect-ratio: 1;
+        }
+
+        .playground-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out-expo), filter 0.6s ease;
+            filter: saturate(0.8);
+        }
+
+        .playground-item:hover img {
+            transform: scale(1.08);
+            filter: saturate(1.2);
+        }
+
+        .playground-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.4);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .playground-item:hover .playground-item-overlay {
+            opacity: 1;
+        }
+
+        .playground-item-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0.7);
+            transition: transform 0.5s var(--ease-out-expo);
+        }
+
+        .playground-item:hover .playground-item-icon {
+            transform: scale(1);
+        }
+
+        .playground-item-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: var(--white);
+            stroke-width: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CONTACT / FOOTER
+           ═══════════════════════════════════════════════ */
+        .contact-section {
+            background: var(--charcoal);
+            padding: clamp(5rem, 12vw, 12rem) clamp(1.5rem, 5vw, 5rem);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(3rem, 8vw, 8rem);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-left h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            color: var(--white);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-left p {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.8;
+            color: var(--warm-grey);
+            max-width: 380px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--mid-grey);
+            padding: 1rem 0;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: var(--cream);
+            outline: none;
+            transition: border-color 0.4s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--mid-grey);
+            font-weight: 300;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--gold);
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .form-submit {
+            align-self: flex-start;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: transparent;
+            border: 1px solid var(--gold);
+            padding: 1em 3em;
+            cursor: pointer;
+            transition: all 0.5s var(--ease-out-expo);
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            padding: 3rem clamp(1.5rem, 5vw, 5rem);
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--warm-grey);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--mid-grey);
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-copy {
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            color: var(--mid-grey);
+            letter-spacing: 0.05em;
+        }
+
+        /* ═══════════════════════════════════════════════
+           IMAGE LIGHTBOX
+           ═══════════════════════════════════════════════ */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 10, 10, 0.96);
+            z-index: 5000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s var(--ease-out-expo);
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            transform: scale(0.9);
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--cream);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: border-color 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ═══════════════════════════════════════════════
+           SECTION TRANSITIONS / BETWEEN SECTIONS
+           ═══════════════════════════════════════════════ */
+        .section-transition {
+            height: clamp(60px, 10vw, 120px);
+            position: relative;
+        }
+
+        .section-transition.dark-to-light {
+            background: linear-gradient(to bottom, var(--black), var(--white));
+        }
+
+        .section-transition.light-to-dark {
+            background: linear-gradient(to bottom, var(--white), var(--charcoal));
+        }
+
+        .section-transition.dark-to-dark {
+            background: linear-gradient(to bottom, var(--charcoal), var(--black));
+        }
+
+        .section-transition.dark-to-charcoal {
+            background: linear-gradient(to bottom, var(--black), var(--charcoal));
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .studio-grid {
+                grid-template-columns: repeat(6, 1fr);
+                grid-auto-rows: clamp(120px, 18vw, 250px);
+            }
+            .studio-item:nth-child(1)  { grid-column: 1 / 4;  grid-row: span 2; }
+            .studio-item:nth-child(2)  { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(3)  { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(4)  { grid-column: 1 / 4;  grid-row: span 1; }
+            .studio-item:nth-child(5)  { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(6)  { grid-column: 1 / 4;  grid-row: span 2; }
+            .studio-item:nth-child(7)  { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(8)  { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(9)  { grid-column: 1 / 4;  grid-row: span 1; }
+            .studio-item:nth-child(10) { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(11) { grid-column: 1 / 7;  grid-row: span 2; }
+            .studio-item:nth-child(12) { grid-column: 1 / 4;  grid-row: span 1; }
+            .studio-item:nth-child(13) { grid-column: 4 / 7;  grid-row: span 1; }
+            .studio-item:nth-child(14) { grid-column: 1 / 4;  grid-row: span 1; }
+            .studio-item:nth-child(15) { grid-column: 4 / 7;  grid-row: span 1; }
+
+            .arthaus-piece {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .arthaus-piece:nth-child(even) { direction: ltr; }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-menu-btn { display: block; }
+            .nav { padding: 1.2rem 1.5rem; }
+
+            .studio-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-auto-rows: clamp(150px, 30vw, 250px);
+            }
+            .studio-item:nth-child(n) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+            .studio-item:nth-child(1) { grid-column: 1 / -1; grid-row: span 1; }
+            .studio-item:nth-child(6) { grid-column: 1 / -1; grid-row: span 1; }
+            .studio-item:nth-child(11) { grid-column: 1 / -1; grid-row: span 1; }
+
+            .shop-card {
+                flex: 0 0 75vw;
+            }
+
+            .playground-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cursor-dot, .cursor-ring { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .studio-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: auto;
+            }
+            .studio-item:nth-child(n) {
+                grid-column: auto;
+                grid-row: auto;
+            }
+            .studio-item {
+                aspect-ratio: 4/3;
+            }
+        }
+
+        /* ═══════════════════════════════════════════════
+           LAZY LOADING PLACEHOLDER
+           ═══════════════════════════════════════════════ */
+        .lazy-img {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .lazy-img.loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-text">Khaled Sorour</div>
+        <div class="preloader-line"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged view" id="lightboxImg">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav-logo">KS</a>
+        <ul class="nav-links">
+            <li><a href="#studio">Studio</a></li>
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#arthaus">Arthaus</a></li>
+            <li><a href="#playground">Playground</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="#studio">Chiave Studio</a>
+            <a href="#shop">Chiave Shop</a>
+            <a href="#arthaus">Arthaus Egypt</a>
+            <a href="#playground">Playground</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </div>
+
+    <!-- ═══════════ HERO ═══════════ -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-content">
+            <span class="hero-eyebrow">Creative Director &amp; Designer</span>
+            <h1 class="hero-name">
+                <span class="line"><span>Khaled</span></span>
+                <span class="line"><span>Sorour</span></span>
+            </h1>
+            <p class="hero-tagline">Where vision becomes form, and form becomes legacy</p>
+            <div class="hero-line"></div>
+        </div>
+        <div class="hero-scroll">Scroll</div>
+    </section>
+
+    <!-- ═══════════ CHIAVE STUDIO ═══════════ -->
+    <section class="section studio-section" id="studio">
+        <div class="section-header reveal">
+            <span class="section-number">01 &mdash; Interior &amp; Architecture</span>
+            <h2 class="section-title">Chiave Studio</h2>
+            <p class="section-subtitle">Crafting spaces that speak in silence</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="studio-grid">
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143331.png" alt="Chiave Studio — Design Publication">
+                <div class="studio-item-overlay"><span class="studio-item-label">Design Publication</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143404.png" alt="Chiave Studio — Urban Vision">
+                <div class="studio-item-overlay"><span class="studio-item-label">Urban Vision</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143921.png" alt="Chiave Studio — Spatial Study">
+                <div class="studio-item-overlay"><span class="studio-item-label">Spatial Study</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143939.png" alt="Chiave Studio — Material Exploration">
+                <div class="studio-item-overlay"><span class="studio-item-label">Material Exploration</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 143953.png" alt="Chiave Studio — Interior Concept">
+                <div class="studio-item-overlay"><span class="studio-item-label">Interior Concept</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144006.png" alt="Chiave Studio — Architectural Detail">
+                <div class="studio-item-overlay"><span class="studio-item-label">Architectural Detail</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144021.png" alt="Chiave Studio — Form Study">
+                <div class="studio-item-overlay"><span class="studio-item-label">Form Study</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144106.png" alt="Chiave Studio — Terrain Model">
+                <div class="studio-item-overlay"><span class="studio-item-label">Terrain Model</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144116.png" alt="Chiave Studio — Composition">
+                <div class="studio-item-overlay"><span class="studio-item-label">Composition</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144135.png" alt="Chiave Studio — Design System">
+                <div class="studio-item-overlay"><span class="studio-item-label">Design System</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144148.png" alt="Chiave Studio — Collection">
+                <div class="studio-item-overlay"><span class="studio-item-label">Collection</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144213.png" alt="Chiave Studio — Art Direction">
+                <div class="studio-item-overlay"><span class="studio-item-label">Art Direction</span></div>
+            </div>
+            <div class="studio-item reveal">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144228.png" alt="Chiave Studio — KAWS Collection">
+                <div class="studio-item-overlay"><span class="studio-item-label">KAWS Collection</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144240.png" alt="Chiave Studio — Creative Direction">
+                <div class="studio-item-overlay"><span class="studio-item-label">Creative Direction</span></div>
+            </div>
+            <div class="studio-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chiave_studio/Screenshot 2026-03-26 144257.png" alt="Chiave Studio — Vision">
+                <div class="studio-item-overlay"><span class="studio-item-label">Vision</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition -->
+    <div class="section-transition dark-to-light"></div>
+
+    <!-- ═══════════ CHIAVE SHOP ═══════════ -->
+    <section class="section shop-section" id="shop">
+        <div class="section-header reveal">
+            <span class="section-number">02 &mdash; Curated Objects</span>
+            <h2 class="section-title">Chiave Shop</h2>
+            <p class="section-subtitle">Collectible design, delivered with intention</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="shop-scroll-hint reveal">
+            <span>Drag to explore</span>
+            <div class="line"></div>
+        </div>
+        <div class="shop-horizontal" id="shopScroll" style="margin-top: 1.5rem;">
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144343.png" alt="KAWS Companion — Blue Edition">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">KAWS Companion</div>
+                    <div class="shop-card-price">Blue Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144354.png" alt="Designer Collectible">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Figure</div>
+                    <div class="shop-card-price">Limited Series</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144404.png" alt="Sculptural Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculptural Object</div>
+                    <div class="shop-card-price">Exclusive</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144421.png" alt="Designer Toy">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Designer Toy</div>
+                    <div class="shop-card-price">Collector's Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144433.png" alt="Statement Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Statement Piece</div>
+                    <div class="shop-card-price">One of One</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144446.png" alt="Art Collectible">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Collectible</div>
+                    <div class="shop-card-price">Numbered Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144456.png" alt="Gallery Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Gallery Piece</div>
+                    <div class="shop-card-price">Available Now</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144506.png" alt="Sculpted Dogs Collection">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculpted Dogs</div>
+                    <div class="shop-card-price">Full Collection</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144516.png" alt="Figurine">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Figurine</div>
+                    <div class="shop-card-price">Hand-Finished</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144549.png" alt="Designer Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Designer Object</div>
+                    <div class="shop-card-price">Studio Series</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144601.png" alt="Art Toy">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Toy</div>
+                    <div class="shop-card-price">Pre-Order</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144614.png" alt="Miniature Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Miniature Sculpture</div>
+                    <div class="shop-card-price">Limited Run</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144627.png" alt="Collector Item">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Collector Item</div>
+                    <div class="shop-card-price">Signed</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144642.png" alt="Design Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Design Object</div>
+                    <div class="shop-card-price">Exclusive</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144653.png" alt="Art Piece">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Art Piece</div>
+                    <div class="shop-card-price">Gallery Grade</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144704.png" alt="Limited Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Limited Object</div>
+                    <div class="shop-card-price">Numbered</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144715.png" alt="Studio Collectible">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Studio Collectible</div>
+                    <div class="shop-card-price">New Arrival</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144729.png" alt="Character Figure">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Character Figure</div>
+                    <div class="shop-card-price">First Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144742.png" alt="Vinyl Art">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Vinyl Art</div>
+                    <div class="shop-card-price">Curated</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-3">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144754.png" alt="Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Sculpture</div>
+                    <div class="shop-card-price">Premium</div>
+                </div>
+            </div>
+            <div class="shop-card reveal">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144809.png" alt="Abstract Form">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Abstract Form</div>
+                    <div class="shop-card-price">Studio Edition</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-1">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144831.png" alt="Garden Sculpture">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Garden Sculpture</div>
+                    <div class="shop-card-price">Outdoor Collection</div>
+                </div>
+            </div>
+            <div class="shop-card reveal reveal-delay-2">
+                <div class="shop-card-img">
+                    <img class="lazy-img" data-src="chiave.shop/Screenshot 2026-03-26 144844.png" alt="Decorative Object">
+                    <button class="shop-card-quick">View</button>
+                </div>
+                <div class="shop-card-info">
+                    <div class="shop-card-name">Decorative Object</div>
+                    <div class="shop-card-price">Handcrafted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition -->
+    <div class="section-transition light-to-dark"></div>
+
+    <!-- ═══════════ ARTHAUS EGYPT ═══════════ -->
+    <section class="section arthaus-section" id="arthaus">
+        <div class="section-header reveal">
+            <span class="section-number">03 &mdash; Art &amp; Culture</span>
+            <h2 class="section-title">Arthaus Egypt</h2>
+            <p class="section-subtitle">Where ancient craft meets contemporary vision</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="arthaus-gallery">
+            <!-- Featured pieces: first 4 as large alternating layout -->
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144928.png" alt="The Half Carved Face Sink">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 01</div>
+                    <h3 class="arthaus-piece-name">The Half Carved<br>Face Sink</h3>
+                    <p class="arthaus-piece-desc">A sculptural basin that merges utility with art — hand-carved from a single block, each piece carries the quiet weight of Egyptian craftsmanship.</p>
+                    <button class="arthaus-cta">Inquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144936.png" alt="Ceramic Vessel">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 02</div>
+                    <h3 class="arthaus-piece-name">Artisan<br>Vessel</h3>
+                    <p class="arthaus-piece-desc">Born from earth and fire, this vessel speaks to centuries of ceramic tradition reinterpreted through a modern lens.</p>
+                    <button class="arthaus-cta">Acquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144950.png" alt="Sculptural Form">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 03</div>
+                    <h3 class="arthaus-piece-name">Sculptural<br>Form</h3>
+                    <p class="arthaus-piece-desc">An exploration of negative space and material tension — where the hand of the maker becomes the soul of the object.</p>
+                    <button class="arthaus-cta">Inquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145003.png" alt="Heritage Collection">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 04</div>
+                    <h3 class="arthaus-piece-name">Heritage<br>Collection</h3>
+                    <p class="arthaus-piece-desc">Drawing from the rich visual language of Egyptian heritage, each piece is a dialogue between past and present.</p>
+                    <button class="arthaus-cta">Acquire</button>
+                </div>
+            </div>
+
+            <!-- Remaining pieces in compact grid -->
+            <div class="arthaus-compact">
+                <div class="arthaus-compact-item reveal">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145015.png" alt="Art Piece">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Ritual Object</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-1">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145029.png" alt="Art Piece">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Earth Form</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-2">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145042.png" alt="New Designs Collection">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">New Designs</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-3">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145058.png" alt="Art Piece">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Carved Stone</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145113.png" alt="Art Piece">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Basin Series</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-1">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145125.png" alt="Crafted for You">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Crafted for You</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-2">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145142.png" alt="Art Piece">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Studio Work</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition -->
+    <div class="section-transition dark-to-dark"></div>
+
+    <!-- ═══════════ CHIAVE PLAYGROUND ═══════════ -->
+    <section class="section playground-section" id="playground">
+        <div class="section-header reveal">
+            <span class="section-number">04 &mdash; Experimental</span>
+            <h2 class="section-title">Chiave.playground</h2>
+            <p class="section-subtitle">Ideas unbound — where curiosity leads, form follows</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="playground-grid">
+            <div class="playground-item reveal">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145244.png" alt="Chiave Playground — Studio Branding">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145255.png" alt="Chiave Playground — Experiment">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145304.png" alt="Chiave Playground — Creative Study">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145325.png" alt="Chiave Playground — Concept">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145337.png" alt="Chiave Playground — Exploration">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-1">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145351.png" alt="Chiave Playground — Pre-Order Figure">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-2">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145417.png" alt="Chiave Playground — Material Study">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="playground-item reveal reveal-delay-3">
+                <img class="lazy-img" data-src="chivoo.playground/Screenshot 2026-03-26 145435.png" alt="Chiave Playground — Vision">
+                <div class="playground-item-overlay">
+                    <div class="playground-item-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transition -->
+    <div class="section-transition dark-to-charcoal"></div>
+
+    <!-- ═══════════ CONTACT ═══════════ -->
+    <section class="contact-section" id="contact">
+        <div class="contact-grid">
+            <div class="contact-left reveal">
+                <h2>Let's Create<br>Something<br><em>Extraordinary</em></h2>
+                <p>For collaborations, commissions, or acquisitions — every great project begins with a conversation.</p>
+            </div>
+            <form class="contact-form reveal reveal-delay-2" onsubmit="event.preventDefault();">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject">
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Tell us about your vision..."></textarea>
+                </div>
+                <button type="submit" class="form-submit">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Khaled Sorour</div>
+            <ul class="footer-links">
+                <li><a href="#" target="_blank" rel="noopener">Chiave Studio</a></li>
+                <li><a href="#" target="_blank" rel="noopener">Chiave Shop</a></li>
+                <li><a href="#" target="_blank" rel="noopener">Arthaus Egypt</a></li>
+                <li><a href="#" target="_blank" rel="noopener">Playground</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Khaled Sorour. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        /* ═══════════════════════════════════════════════
+           PRELOADER
+           ═══════════════════════════════════════════════ */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1200);
+        });
+
+        /* ═══════════════════════════════════════════════
+           CUSTOM CURSOR
+           ═══════════════════════════════════════════════ */
+        const dot = document.getElementById('cursorDot');
+        const ring = document.getElementById('cursorRing');
+        let mouseX = 0, mouseY = 0;
+        let ringX = 0, ringY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            dot.style.transform = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
+        });
+
+        function animateRing() {
+            ringX += (mouseX - ringX) * 0.12;
+            ringY += (mouseY - ringY) * 0.12;
+            ring.style.transform = `translate(${ringX - 20}px, ${ringY - 20}px)`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+
+        // Hover effect on interactive elements
+        document.querySelectorAll('a, button, .studio-item, .shop-card, .arthaus-compact-item, .playground-item').forEach(el => {
+            el.addEventListener('mouseenter', () => ring.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => ring.classList.remove('hovering'));
+        });
+
+        /* ═══════════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════════ */
+        const nav = document.getElementById('nav');
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 100);
+        });
+
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        /* ═══════════════════════════════════════════════
+           SCROLL REVEAL
+           ═══════════════════════════════════════════════ */
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        /* ═══════════════════════════════════════════════
+           LAZY LOADING
+           ═══════════════════════════════════════════════ */
+        const imgObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.onload = () => img.classList.add('loaded');
+                    imgObserver.unobserve(img);
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        document.querySelectorAll('.lazy-img').forEach(img => imgObserver.observe(img));
+
+        /* ═══════════════════════════════════════════════
+           SHOP HORIZONTAL DRAG SCROLL
+           ═══════════════════════════════════════════════ */
+        const shopScroll = document.getElementById('shopScroll');
+        let isDown = false, startX, scrollLeft;
+
+        shopScroll.addEventListener('mousedown', (e) => {
+            isDown = true;
+            shopScroll.classList.add('grabbing');
+            startX = e.pageX - shopScroll.offsetLeft;
+            scrollLeft = shopScroll.scrollLeft;
+        });
+
+        shopScroll.addEventListener('mouseleave', () => {
+            isDown = false;
+            shopScroll.classList.remove('grabbing');
+        });
+
+        shopScroll.addEventListener('mouseup', () => {
+            isDown = false;
+            shopScroll.classList.remove('grabbing');
+        });
+
+        shopScroll.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - shopScroll.offsetLeft;
+            const walk = (x - startX) * 2;
+            shopScroll.scrollLeft = scrollLeft - walk;
+        });
+
+        /* ═══════════════════════════════════════════════
+           LIGHTBOX
+           ═══════════════════════════════════════════════ */
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        document.querySelectorAll('.studio-item, .arthaus-compact-item, .playground-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.querySelector('img');
+                if (img && img.src) {
+                    lightboxImg.src = img.src;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('lightbox-close')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        /* ═══════════════════════════════════════════════
+           SUBTLE PARALLAX ON HERO
+           ═══════════════════════════════════════════════ */
+        const heroContent = document.querySelector('.hero-content');
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            if (scrolled < window.innerHeight) {
+                heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+                heroContent.style.opacity = 1 - (scrolled / window.innerHeight) * 1.2;
+            }
+        });
+
+        /* ═══════════════════════════════════════════════
+           SMOOTH SCROLL FOR NAV LINKS
+           ═══════════════════════════════════════════════ */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

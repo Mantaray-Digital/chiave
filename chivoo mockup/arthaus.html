@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthaus Egypt — Khaled Sorour</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <img src="" alt="Enlarged view" id="lightboxImg">
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="home.html" class="nav-logo">KS</a>
+        <ul class="nav-links">
+            <li><a href="studio.html">Studio</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="arthaus.html" class="active">Arthaus</a></li>
+            <li><a href="playground.html">Playground</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav-menu-btn" id="menuBtn" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="studio.html">Chiave Studio</a>
+            <a href="shop.html">Chiave Shop</a>
+            <a href="arthaus.html">Arthaus Egypt</a>
+            <a href="playground.html">Playground</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-bg">
+            <img src="arthausegypt/Screenshot 2026-03-26 144928.png" alt="Arthaus Egypt">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <div class="page-hero-grain"></div>
+        <div class="page-hero-content">
+            <span class="page-hero-number">03 &mdash; Art &amp; Culture</span>
+            <h1 class="page-hero-title">Arthaus Egypt</h1>
+            <p class="page-hero-subtitle">Where ancient craft meets contemporary vision</p>
+            <div class="page-hero-line"></div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section arthaus-section">
+        <div class="arthaus-intro reveal">
+            <p>Arthaus Egypt is a living archive of Egyptian craftsmanship — a bridge between the hands of artisans who have shaped clay, stone, and metal for millennia, and the eye of a contemporary creative director who understands how to give tradition new relevance. Every piece is made by hand in Egypt, carrying the weight of heritage and the lightness of modern design.</p>
+        </div>
+
+        <div class="arthaus-gallery">
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144928.png" alt="The Half Carved Face Sink">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 01</div>
+                    <h3 class="arthaus-piece-name">The Half Carved<br>Face Sink</h3>
+                    <p class="arthaus-piece-desc">A sculptural basin that merges utility with art — hand-carved from a single block, each piece carries the quiet weight of Egyptian craftsmanship.</p>
+                    <button class="arthaus-cta">Inquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144936.png" alt="Artisan Vessel">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 02</div>
+                    <h3 class="arthaus-piece-name">Artisan<br>Vessel</h3>
+                    <p class="arthaus-piece-desc">Born from earth and fire, this vessel speaks to centuries of ceramic tradition reinterpreted through a modern lens.</p>
+                    <button class="arthaus-cta">Acquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 144950.png" alt="Sculptural Form">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 03</div>
+                    <h3 class="arthaus-piece-name">Sculptural<br>Form</h3>
+                    <p class="arthaus-piece-desc">An exploration of negative space and material tension — where the hand of the maker becomes the soul of the object.</p>
+                    <button class="arthaus-cta">Inquire</button>
+                </div>
+            </div>
+            <div class="arthaus-piece reveal">
+                <div class="arthaus-piece-img">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145003.png" alt="Heritage Collection">
+                </div>
+                <div class="arthaus-piece-info">
+                    <div class="arthaus-piece-number">Piece 04</div>
+                    <h3 class="arthaus-piece-name">Heritage<br>Collection</h3>
+                    <p class="arthaus-piece-desc">Drawing from the rich visual language of Egyptian heritage, each piece is a dialogue between past and present.</p>
+                    <button class="arthaus-cta">Acquire</button>
+                </div>
+            </div>
+
+            <div class="arthaus-compact">
+                <div class="arthaus-compact-item reveal">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145015.png" alt="Ritual Object">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Ritual Object</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-1">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145029.png" alt="Earth Form">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Earth Form</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-2">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145042.png" alt="New Designs">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">New Designs</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-3">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145058.png" alt="Carved Stone">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Carved Stone</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145113.png" alt="Basin Series">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Basin Series</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-1">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145125.png" alt="Crafted for You">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Crafted for You</span>
+                        <span class="arthaus-compact-cta">Acquire &rarr;</span>
+                    </div>
+                </div>
+                <div class="arthaus-compact-item reveal reveal-delay-2">
+                    <img class="lazy-img" data-src="arthausegypt/Screenshot 2026-03-26 145142.png" alt="Studio Work">
+                    <div class="arthaus-compact-overlay">
+                        <span class="arthaus-compact-name">Studio Work</span>
+                        <span class="arthaus-compact-cta">Inquire &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="section-transition dark-to-dark"></div>
+    <section class="contact-teaser reveal">
+        <h2 class="contact-teaser-title">Commission a bespoke piece</h2>
+        <a href="contact.html" class="contact-teaser-btn">Begin the Conversation</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">Khaled Sorour</div>
+            <ul class="footer-links">
+                <li><a href="studio.html">Studio</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="arthaus.html">Arthaus</a></li>
+                <li><a href="playground.html">Playground</a></li>
+            </ul>
+            <div class="footer-copy">&copy; 2026 Khaled Sorour. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+    <script src="main.js"></script>
+</body>
+</html>
