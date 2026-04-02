@@ -11,6 +11,7 @@ import {
   useStoreConfig,
 } from "@mantaray-digital/store-sdk/react";
 import { formatPrice } from "@/lib/format-price";
+import { useCartToast } from "@/components/atoms/CartToast";
 
 function ProductDetailSkeleton() {
   return (
@@ -47,6 +48,7 @@ export default function ProductPage() {
   const { data: product, loading, error } = useProduct(id);
   const { data: relatedProducts } = useRelatedProducts(id, 4);
   const { addItem } = useCart();
+  const { showToast } = useCartToast();
   const { data: storeConfig } = useStoreConfig();
   const settings = storeConfig?.settings ?? {
     currencySymbol: "$",
@@ -208,6 +210,11 @@ export default function ProductPage() {
               <button
                 onClick={() => {
                   addItem(product._id);
+                  showToast({
+                    productName: product.name,
+                    productImage: mainImage,
+                    price: formattedPrice,
+                  });
                 }}
                 className="mb-8 flex w-full items-center justify-center gap-3 bg-[#c8a96e] py-4 text-xs uppercase tracking-[0.25em] text-[#0a0a0a] transition-colors hover:bg-[#b8994e] md:w-auto md:px-16"
                 style={{ fontFamily: "var(--font-body)" }}

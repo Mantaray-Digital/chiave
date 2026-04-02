@@ -6,6 +6,7 @@ import { ShoppingBag } from "lucide-react";
 import type { Product, ProductListItem } from "@mantaray-digital/store-sdk";
 import { useCart, useStoreConfig } from "@mantaray-digital/store-sdk/react";
 import { formatPrice } from "@/lib/format-price";
+import { useCartToast } from "@/components/atoms/CartToast";
 
 interface ProductCardProps {
   product: Product | ProductListItem;
@@ -13,6 +14,7 @@ interface ProductCardProps {
 
 export function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
+  const { showToast } = useCartToast();
   const { data: storeConfig } = useStoreConfig();
   const inStock = product.stock === undefined || product.stock > 0;
   const hasDiscount =
@@ -57,6 +59,11 @@ export function ProductCard({ product }: ProductCardProps) {
               onClick={(e) => {
                 e.stopPropagation();
                 addItem(product._id);
+                showToast({
+                  productName: product.name,
+                  productImage: mainImage,
+                  price: formattedPrice,
+                });
               }}
               className="flex items-center gap-2 border border-white/80 bg-white/0 px-4 py-2 text-xs uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:bg-[#c8a96e] hover:border-[#c8a96e] hover:text-[#0a0a0a]"
               style={{ fontFamily: "var(--font-body)" }}

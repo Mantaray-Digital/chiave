@@ -8,6 +8,7 @@ import { Preloader } from "@/components/atoms/Preloader";
 import { BackToTop } from "@/components/atoms/BackToTop";
 import { ScrollRevealProvider } from "@/components/atoms/ScrollRevealProvider";
 import { MantarayClientProvider } from "@/lib/mantaray-provider";
+import { CartToastProvider } from "@/components/atoms/CartToast";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
@@ -42,9 +43,11 @@ export default function RootLayout({
         <Preloader />
         <CustomCursor />
         <MantarayClientProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <CartToastProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </CartToastProvider>
         </MantarayClientProvider>
         <BackToTop />
         <ScrollRevealProvider />

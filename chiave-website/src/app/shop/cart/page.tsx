@@ -12,6 +12,7 @@ export default function CartPage() {
   const { data: storeConfig } = useStoreConfig();
   const hasLoadedOnce = useRef(false);
   const [updatingItems, setUpdatingItems] = useState<Set<string>>(new Set());
+  const [optimisticQuantities, setOptimisticQuantities] = useState<Map<string, number>>(new Map());
 
   if (cart && !loading) {
     hasLoadedOnce.current = true;
@@ -20,12 +21,18 @@ export default function CartPage() {
   const handleUpdateItem = useCallback(
     async (productId: string, quantity: number, variantId?: string | null) => {
       const key = `${productId}-${variantId ?? ""}`;
+      setOptimisticQuantities((prev) => new Map(prev).set(key, quantity));
       setUpdatingItems((prev) => new Set(prev).add(key));
       try {
-        await updateItem(productId, quantity, variantId);
+        await updateItem(productId, quantity, variantId ?? undefined);
       } finally {
         setUpdatingItems((prev) => {
           const next = new Set(prev);
+          next.delete(key);
+          return next;
+        });
+        setOptimisticQuantities((prev) => {
+          const next = new Map(prev);
           next.delete(key);
           return next;
         });
@@ -39,7 +46,7 @@ export default function CartPage() {
       const key = `${productId}-${variantId ?? ""}`;
       setUpdatingItems((prev) => new Set(prev).add(key));
       try {
-        await removeItem(productId, variantId);
+        await removeItem(productId, variantId ?? undefined);
       } finally {
         setUpdatingItems((prev) => {
           const next = new Set(prev);
@@ -289,6 +296,7 @@ export default function CartPage() {
                         {(() => {
                           const itemKey = `${item.productId}-${item.variantId ?? ""}`;
                           const isItemUpdating = updatingItems.has(itemKey);
+                          const displayQuantity = optimisticQuantities.get(itemKey) ?? item.quantity;
                           return (
                             <div className="flex items-center gap-3">
                               <button
@@ -307,11 +315,7 @@ export default function CartPage() {
                                 className="min-w-[2rem] text-center text-sm text-[#e8e2d8]"
                                 style={{ fontFamily: "var(--font-body)" }}
                               >
-                                {isItemUpdating ? (
-                                  <Loader2 className="mx-auto h-4 w-4 animate-spin text-[#c8a96e]" />
-                                ) : (
-                                  item.quantity
-                                )}
+                                {displayQuantity}
                               </span>
                               <button
                                 onClick={() => handleUpdateItem(item.productId, item.quantity + 1, item.variantId)}

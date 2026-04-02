@@ -176,6 +176,11 @@
   100% { width: 20px; opacity: 0.3; }
 }
 
+@keyframes toast-progress {
+  from { width: 100%; }
+  to { width: 0%; }
+}
+
 @keyframes grain-shift {
   0%, 100% { transform: translate(0, 0); }
   10% { transform: translate(-2%, -2%); }
