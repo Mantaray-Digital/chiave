@@ -8,16 +8,17 @@ import {
   useCustomer,
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, getSafeRedirect } from "@/stores/auth-store";
 
 function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  const redirect = getSafeRedirect(searchParams.get("redirect"));
 
   const store = useMantarayStore();
   const { login } = useCustomer();
   const customerId = useAuthStore((s) => s.customerId);
+  const hydrated = useAuthStore((s) => s._hydrated);
   const setCustomer = useAuthStore((s) => s.setCustomer);
 
   const [email, setEmail] = useState("");
@@ -27,10 +28,10 @@ function LoginForm() {
 
   // If already logged in, redirect immediately
   useEffect(() => {
-    if (customerId) {
-      router.replace(redirect || "/account");
+    if (hydrated && customerId) {
+      router.replace(redirect);
     }
-  }, [customerId, redirect, router]);
+  }, [hydrated, customerId, redirect, router]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -41,7 +42,7 @@ function LoginForm() {
       const result = await login(email, password);
       store.setCustomer(result.customerId);
       setCustomer(result.customerId, result.name, result.email);
-      router.push(redirect || "/account");
+      router.replace(redirect);
     } catch (err) {
       setError(
         err instanceof Error ? err.message : "Login failed. Please try again."
@@ -55,8 +56,8 @@ function LoginForm() {
     ? `/account/register?redirect=${encodeURIComponent(redirect)}`
     : "/account/register";
 
-  // Don't render the form if already logged in
-  if (customerId) {
+  // Show loading while hydrating or if already logged in
+  if (!hydrated || customerId) {
     return (
       <section className="flex min-h-screen items-center justify-center bg-[#0a0a0a]">
         <Loader2 className="h-8 w-8 animate-spin text-[#c8a96e]" />

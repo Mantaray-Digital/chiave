@@ -27,18 +27,19 @@ export default function AccountPage() {
 
   const customerId = useAuthStore((s) => s.customerId);
   const customerName = useAuthStore((s) => s.customerName);
+  const hydrated = useAuthStore((s) => s._hydrated);
   const clearCustomerAuth = useAuthStore((s) => s.clearCustomer);
 
   const { profile, loading: profileLoading, logout } = useCustomer();
   const { data: orders, loading: ordersLoading } = useOrders(customerId ?? undefined);
   const { data: storeConfig } = useStoreConfig();
 
-  // Redirect if not logged in
+  // Redirect if not logged in (wait for hydration first)
   useEffect(() => {
-    if (customerId === null) {
+    if (hydrated && customerId === null) {
       router.replace("/account/login");
     }
-  }, [customerId, router]);
+  }, [hydrated, customerId, router]);
 
   const handleLogout = async () => {
     try {
@@ -66,8 +67,8 @@ export default function AccountPage() {
 
   const renderPrice = (amount: number) => formatPrice(amount, currencySettings);
 
-  // Show loading while checking auth or loading data
-  if (customerId === null || (profileLoading && !profile)) {
+  // Show loading while hydrating, checking auth, or loading data
+  if (!hydrated || customerId === null || (profileLoading && !profile)) {
     return (
       <section className="flex min-h-screen items-center justify-center bg-[#0a0a0a]">
         <Loader2 className="h-8 w-8 animate-spin text-[#c8a96e]" />

@@ -8,16 +8,17 @@ import {
   useCustomer,
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, getSafeRedirect } from "@/stores/auth-store";
 
 function RegisterForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect");
+  const redirect = getSafeRedirect(searchParams.get("redirect"));
 
   const store = useMantarayStore();
   const { register, login } = useCustomer();
   const customerId = useAuthStore((s) => s.customerId);
+  const hydrated = useAuthStore((s) => s._hydrated);
   const setCustomer = useAuthStore((s) => s.setCustomer);
 
   const [name, setName] = useState("");
@@ -31,10 +32,10 @@ function RegisterForm() {
 
   // If already logged in, redirect immediately
   useEffect(() => {
-    if (customerId) {
-      router.replace(redirect || "/account");
+    if (hydrated && customerId) {
+      router.replace(redirect);
     }
-  }, [customerId, redirect, router]);
+  }, [hydrated, customerId, redirect, router]);
 
   const validate = (): boolean => {
     const errors: Record<string, string> = {};
@@ -85,7 +86,7 @@ function RegisterForm() {
       const loginResult = await login(email, password);
       store.setCustomer(loginResult.customerId);
       setCustomer(loginResult.customerId, loginResult.name, loginResult.email);
-      router.push(redirect || "/account");
+      router.replace(redirect);
     } catch (err) {
       setError(
         err instanceof Error
@@ -101,8 +102,8 @@ function RegisterForm() {
     ? `/account/login?redirect=${encodeURIComponent(redirect)}`
     : "/account/login";
 
-  // Don't render the form if already logged in
-  if (customerId) {
+  // Show loading while hydrating or if already logged in
+  if (!hydrated || customerId) {
     return (
       <section className="flex min-h-screen items-center justify-center bg-[#0a0a0a]">
         <Loader2 className="h-8 w-8 animate-spin text-[#c8a96e]" />

@@ -51,12 +51,13 @@ export default function CheckoutPage() {
   const { data: storeConfig } = useStoreConfig();
   const { data: shippingTiers, loading: tiersLoading } = useShippingTiers();
   const authCustomerId = useAuthStore((s) => s.customerId);
+  const authHydrated = useAuthStore((s) => s._hydrated);
 
   useEffect(() => {
-    if (authCustomerId === null) {
+    if (authHydrated && authCustomerId === null) {
       router.replace("/account/login?redirect=/shop/checkout");
     }
-  }, [authCustomerId, router]);
+  }, [authHydrated, authCustomerId, router]);
 
   const [shipping, setShipping] = useState<ShippingFormData>(INITIAL_SHIPPING);
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -144,7 +145,7 @@ export default function CheckoutPage() {
     }
   };
 
-  if (!authCustomerId) {
+  if (!authHydrated || !authCustomerId) {
     return (
       <>
         <section className="grain relative flex h-[35vh] items-center justify-center overflow-hidden bg-[#0a0a0a]">
