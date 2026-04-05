@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,7 @@ import {
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
 import { formatPrice } from "@/lib/format-price";
+import { useAuthStore } from "@/stores/auth-store";
 
 interface ShippingFormData {
   firstName: string;
@@ -49,6 +50,13 @@ export default function CheckoutPage() {
   const { cart, loading: cartLoading, error: cartError } = useCart();
   const { data: storeConfig } = useStoreConfig();
   const { data: shippingTiers, loading: tiersLoading } = useShippingTiers();
+  const authCustomerId = useAuthStore((s) => s.customerId);
+
+  useEffect(() => {
+    if (authCustomerId === null) {
+      router.replace("/account/login?redirect=/shop/checkout");
+    }
+  }, [authCustomerId, router]);
 
   const [shipping, setShipping] = useState<ShippingFormData>(INITIAL_SHIPPING);
   const [paymentMethod, setPaymentMethod] = useState("card");
@@ -114,7 +122,7 @@ export default function CheckoutPage() {
 
     try {
       const result = await store.checkout.createOrder({
-        customerId: store.customer.getCurrentCustomerId() ?? "guest",
+        customerId: authCustomerId!,
         shippingAddress: {
           name: `${shipping.firstName} ${shipping.lastName}`.trim(),
           phone: shipping.phone,
@@ -135,6 +143,40 @@ export default function CheckoutPage() {
       setOrderLoading(false);
     }
   };
+
+  if (!authCustomerId) {
+    return (
+      <>
+        <section className="grain relative flex h-[35vh] items-center justify-center overflow-hidden bg-[#0a0a0a]">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a]/40 to-[#0a0a0a]" />
+          <div className="relative z-10 flex flex-col items-center text-center">
+            <span
+              className="animate-hero-reveal mb-4 text-xs font-medium uppercase text-[#c8a96e]"
+              style={{ fontFamily: "var(--font-body)", letterSpacing: "0.5em" }}
+            >
+              Final Step
+            </span>
+            <div className="overflow-hidden">
+              <h1
+                className="animate-hero-slide-up font-light text-[#e8e2d8]"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontSize: "clamp(2.5rem, 6vw, 5rem)",
+                  fontWeight: 300,
+                  letterSpacing: "0.08em",
+                }}
+              >
+                Checkout
+              </h1>
+            </div>
+          </div>
+        </section>
+        <section className="flex items-center justify-center bg-[#0a0a0a] px-6 py-24">
+          <Loader2 className="h-8 w-8 animate-spin text-[#c8a96e]" />
+        </section>
+      </>
+    );
+  }
 
   if (cartLoading) {
     return (
