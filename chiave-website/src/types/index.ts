@@ -42,5 +42,11 @@ export type {
   StoreConfig,
   StoreSettings,
   Order as SDKOrder,
+  CustomerProfile,
+  CustomerAddress,
+  LoginResult,
+  RegisterResult,
+  RegisterData,
+  OrderListItem,
 } from "@mantaray-digital/store-sdk";
 
