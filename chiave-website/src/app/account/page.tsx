@@ -10,7 +10,7 @@ import {
   useMantarayStore,
   useStoreConfig,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, useAuthHydrated } from "@/stores/auth-store";
 import { formatPrice } from "@/lib/format-price";
 
 const statusStyles: Record<string, string> = {
@@ -27,7 +27,7 @@ export default function AccountPage() {
 
   const customerId = useAuthStore((s) => s.customerId);
   const customerName = useAuthStore((s) => s.customerName);
-  const hydrated = useAuthStore((s) => s._hydrated);
+  const hydrated = useAuthHydrated();
   const clearCustomerAuth = useAuthStore((s) => s.clearCustomer);
 
   const { profile, loading: profileLoading, logout } = useCustomer();

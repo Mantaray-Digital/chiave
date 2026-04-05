@@ -8,7 +8,7 @@ import {
   useCustomer,
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore, getSafeRedirect } from "@/stores/auth-store";
+import { useAuthStore, useAuthHydrated, getSafeRedirect } from "@/stores/auth-store";
 
 function LoginForm() {
   const router = useRouter();
@@ -18,7 +18,7 @@ function LoginForm() {
   const store = useMantarayStore();
   const { login } = useCustomer();
   const customerId = useAuthStore((s) => s.customerId);
-  const hydrated = useAuthStore((s) => s._hydrated);
+  const hydrated = useAuthHydrated();
   const setCustomer = useAuthStore((s) => s.setCustomer);
 
   const [email, setEmail] = useState("");

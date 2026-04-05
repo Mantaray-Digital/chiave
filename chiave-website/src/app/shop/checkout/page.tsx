@@ -12,7 +12,7 @@ import {
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
 import { formatPrice } from "@/lib/format-price";
-import { useAuthStore } from "@/stores/auth-store";
+import { useAuthStore, useAuthHydrated } from "@/stores/auth-store";
 
 interface ShippingFormData {
   firstName: string;
@@ -51,7 +51,7 @@ export default function CheckoutPage() {
   const { data: storeConfig } = useStoreConfig();
   const { data: shippingTiers, loading: tiersLoading } = useShippingTiers();
   const authCustomerId = useAuthStore((s) => s.customerId);
-  const authHydrated = useAuthStore((s) => s._hydrated);
+  const authHydrated = useAuthHydrated();
 
   useEffect(() => {
     if (authHydrated && authCustomerId === null) {
