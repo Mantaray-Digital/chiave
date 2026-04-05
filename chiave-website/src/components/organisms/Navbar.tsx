@@ -3,8 +3,9 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, User } from "lucide-react";
 import { useCart } from "@mantaray-digital/store-sdk/react";
+import { useAuthStore } from "@/stores/auth-store";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
@@ -21,6 +22,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const { cart } = useCart();
   const itemCount = cart?.itemCount ?? 0;
+  const customerId = useAuthStore((s) => s.customerId);
 
   const handleScroll = useCallback(() => {
     setScrolled(window.scrollY > 40);
@@ -108,6 +110,15 @@ export function Navbar() {
               ))}
             </ul>
 
+            {/* User Icon */}
+            <Link
+              href={customerId ? "/account" : "/account/login"}
+              className="relative flex items-center justify-center text-white"
+              aria-label={customerId ? "My account" : "Sign in"}
+            >
+              <User className="h-[18px] w-[18px]" strokeWidth={1.5} />
+            </Link>
+
             {/* Cart Icon */}
             <Link
               href="/shop/cart"
@@ -123,8 +134,16 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile: Cart + Hamburger */}
+          {/* Mobile: User + Cart + Hamburger */}
           <div className="flex md:hidden items-center gap-4">
+            <Link
+              href={customerId ? "/account" : "/account/login"}
+              className="relative z-50 flex items-center justify-center text-white"
+              aria-label={customerId ? "My account" : "Sign in"}
+            >
+              <User className="h-[18px] w-[18px]" strokeWidth={1.5} />
+            </Link>
+
             <Link
               href="/shop/cart"
               className="relative z-50 flex items-center justify-center text-white"
