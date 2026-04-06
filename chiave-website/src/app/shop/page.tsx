@@ -1,10 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { useProducts, useCategories } from "@mantaray-digital/store-sdk/react";
 import { ShopBestSellers } from "@/components/organisms/ShopBestSellers";
 import { ShopCategories } from "@/components/organisms/ShopCategories";
 import { ProductCard } from "@/components/molecules/ProductCard";
+import { SearchBar } from "@/components/molecules/SearchBar";
 
 function ProductCardSkeleton() {
   return (
@@ -46,12 +48,25 @@ function SectionSkeleton({ title }: { title: string }) {
 export default function ShopPage() {
   const { data: productsData, loading: productsLoading } = useProducts();
   const { data: categoriesData, loading: categoriesLoading } = useCategories();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const products = productsData?.products ?? [];
   const categories = categoriesData ?? [];
 
   // Use first 8 products as "featured / best sellers"
   const bestSellers = products.slice(0, 8);
+
+  // Filter products by search and category
+  const filteredProducts = products.filter((p) => {
+    const matchesSearch =
+      !searchQuery ||
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.description?.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory =
+      !activeCategory || p.categoryId === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   return (
     <>
@@ -140,7 +155,7 @@ export default function ShopPage() {
         <section className="reveal px-6 py-20 md:px-12 lg:px-24">
           <div className="mx-auto max-w-7xl">
             {/* Heading */}
-            <div className="mb-12 flex items-end justify-between">
+            <div className="mb-8 flex items-end justify-between">
               <h2
                 className="text-3xl font-light text-[#1a1a1a] md:text-5xl"
                 style={{ fontFamily: "var(--font-display)" }}
@@ -151,8 +166,52 @@ export default function ShopPage() {
                 className="ml-4 text-sm text-[#8a8278]"
                 style={{ fontFamily: "var(--font-body)" }}
               >
-                {productsLoading ? "..." : `${products.length} items`}
+                {productsLoading
+                  ? "..."
+                  : `${filteredProducts.length} item${filteredProducts.length !== 1 ? "s" : ""}`}
               </span>
+            </div>
+
+            {/* Search & Filters */}
+            <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+              />
+
+              {categories.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  <button
+                    onClick={() => setActiveCategory(null)}
+                    className={`px-4 py-1.5 text-xs uppercase tracking-[0.15em] transition-colors ${
+                      activeCategory === null
+                        ? "bg-[#1a1a1a] text-[#e8e2d8]"
+                        : "border border-[#c4b9a8] text-[#8a8278] hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                    }`}
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    All
+                  </button>
+                  {categories.map((cat) => (
+                    <button
+                      key={cat._id}
+                      onClick={() =>
+                        setActiveCategory(
+                          activeCategory === cat._id ? null : cat._id
+                        )
+                      }
+                      className={`px-4 py-1.5 text-xs uppercase tracking-[0.15em] transition-colors ${
+                        activeCategory === cat._id
+                          ? "bg-[#1a1a1a] text-[#e8e2d8]"
+                          : "border border-[#c4b9a8] text-[#8a8278] hover:border-[#1a1a1a] hover:text-[#1a1a1a]"
+                      }`}
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      {cat.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {productsLoading ? (
@@ -161,9 +220,18 @@ export default function ShopPage() {
                   <ProductCardSkeleton key={i} />
                 ))}
               </div>
+            ) : filteredProducts.length === 0 ? (
+              <div className="py-20 text-center">
+                <p
+                  className="text-lg text-[#8a8278]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  No products found.
+                </p>
+              </div>
             ) : (
               <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:grid-cols-4">
-                {products.map((product) => (
+                {filteredProducts.map((product) => (
                   <ProductCard key={product._id} product={product} />
                 ))}
               </div>
