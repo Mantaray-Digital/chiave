@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -95,7 +96,9 @@ export default function ProductPage() {
     ? formatPrice(product.compareAtPrice!, settings)
     : null;
 
-  const mainImage = product.images[0] ?? "/images/placeholder.png";
+  const images = product.images.length > 0 ? product.images : ["/images/placeholder.png"];
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   return (
     <>
@@ -119,37 +122,90 @@ export default function ProductPage() {
       {/* Product Detail */}
       <section className="bg-[#0a0a0a] px-6 pb-20 md:px-12 lg:px-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:gap-16">
-          {/* Image */}
-          <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[#1a1a1a]">
-            <Image
-              src={mainImage}
-              alt={product.name}
-              fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
-            />
+          {/* Image Gallery */}
+          <div className="flex flex-col gap-3">
+            {/* Main Image */}
+            <div
+              className="relative aspect-[3/4] cursor-zoom-in overflow-hidden rounded-lg bg-[#1a1a1a]"
+              onClick={() => setLightboxOpen(true)}
+            >
+              <Image
+                src={images[selectedImage]}
+                alt={product.name}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+              />
 
-            {hasDiscount && (
-              <span
-                className="absolute left-4 top-4 bg-[#c8a96e] px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-[#0a0a0a]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                Sale
-              </span>
-            )}
-
-            {!inStock && (
-              <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+              {hasDiscount && (
                 <span
-                  className="text-sm uppercase tracking-[0.25em] text-white/80"
+                  className="absolute left-4 top-4 bg-[#c8a96e] px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-[#0a0a0a]"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  Sold Out
+                  Sale
                 </span>
+              )}
+
+              {!inStock && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/50">
+                  <span
+                    className="text-sm uppercase tracking-[0.25em] text-white/80"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Sold Out
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* Thumbnails */}
+            {images.length > 1 && (
+              <div className="flex gap-2 overflow-x-auto">
+                {images.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedImage(i)}
+                    className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded border-2 transition-colors ${
+                      i === selectedImage
+                        ? "border-[#c8a96e]"
+                        : "border-transparent hover:border-[#2a2a2a]"
+                    }`}
+                  >
+                    <Image
+                      src={img}
+                      alt={`${product.name} ${i + 1}`}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </button>
+                ))}
               </div>
             )}
           </div>
+
+          {/* Lightbox */}
+          {lightboxOpen && (
+            <div
+              className="fixed inset-0 z-[9998] flex items-center justify-center bg-[#0a0a0a]/90"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <button
+                onClick={() => setLightboxOpen(false)}
+                aria-label="Close lightbox"
+                className="absolute right-6 top-6 z-10 text-3xl text-[#e8e2d8] transition-colors hover:text-[#c8a96e]"
+              >
+                &times;
+              </button>
+              <img
+                src={images[selectedImage]}
+                alt={product.name}
+                className="relative z-10 max-h-[90vh] max-w-[90vw] object-contain"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+          )}
 
           {/* Info */}
           <div className="flex flex-col justify-center">
@@ -212,7 +268,7 @@ export default function ProductPage() {
                   addItem(product._id);
                   showToast({
                     productName: product.name,
-                    productImage: mainImage,
+                    productImage: images[0],
                     price: formattedPrice,
                   });
                 }}
