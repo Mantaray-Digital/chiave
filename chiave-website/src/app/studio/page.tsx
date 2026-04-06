@@ -1,9 +1,15 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DOORS, STUDIO_IMAGES } from "@/lib/constants";
 import type { Door } from "@/types";
 import { SectionHeader } from "@/components/atoms/SectionHeader";
 import { StudioGallery } from "@/components/organisms/StudioGallery";
+
+export const metadata: Metadata = {
+  title: "Studio",
+  description: "Explore seven creative disciplines through Chiave's studio portfolio.",
+};
 
 export default function StudioPage() {
   return (

@@ -10,6 +10,7 @@ import { ScrollRevealProvider } from "@/components/atoms/ScrollRevealProvider";
 import { MantarayClientProvider } from "@/lib/mantaray-provider";
 import { CartToastProvider } from "@/components/atoms/CartToast";
 import { AuthRestorer } from "@/components/atoms/AuthRestorer";
+import { Analytics } from "@/components/atoms/Analytics";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-display",
@@ -25,9 +26,18 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Chiave — Creative Direction & Design",
+  title: {
+    default: "Chiave — Unlock Creative Vision",
+    template: "%s — Chiave",
+  },
   description:
-    "Where vision becomes form, and form becomes legacy. Chiave is the key to seven doors of art and design.",
+    "Chiave is a design studio exploring seven creative disciplines — sculptures, visual arts, art pieces, 3D printing, scenes, characters, and animation.",
+  keywords: ["Chiave", "design studio", "art", "sculptures", "3D printing", "Egypt"],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Chiave",
+  },
 };
 
 export default function RootLayout({
@@ -41,6 +51,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${outfit.variable} h-full`}
     >
       <body className="min-h-full flex flex-col animate-page-in">
+        <Analytics />
         <Preloader />
         <CustomCursor />
         <MantarayClientProvider>

@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { DOORS } from "@/lib/constants";
 import type { Door } from "@/types";
 import { SectionHeader } from "@/components/atoms/SectionHeader";
+
+export const metadata: Metadata = {
+  title: "Chiave — Unlock Creative Vision",
+  description:
+    "Where vision becomes form, and form becomes legacy. Chiave is a design studio exploring seven creative disciplines.",
+};
 
 export default function Home() {
   return (
