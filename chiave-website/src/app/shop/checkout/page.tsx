@@ -345,9 +345,13 @@ export default function CheckoutPage() {
                     </label>
                     <input
                       type="tel"
+                      inputMode="numeric"
+                      pattern="[0-9]*"
                       value={shipping.phone}
-                      onChange={(e) => updateField("phone", e.target.value)}
-                      placeholder="+20 100 000 0000"
+                      onChange={(e) =>
+                        updateField("phone", e.target.value.replace(/\D/g, ""))
+                      }
+                      placeholder="201000000000"
                       className={inputClass("phone")}
                     />
                   </div>

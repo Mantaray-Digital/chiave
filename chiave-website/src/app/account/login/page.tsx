@@ -8,7 +8,12 @@ import {
   useCustomer,
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore, useAuthHydrated, getSafeRedirect } from "@/stores/auth-store";
+import {
+  useAuthStore,
+  useAuthHydrated,
+  getSafeRedirect,
+  friendlyAuthError,
+} from "@/stores/auth-store";
 
 function LoginForm() {
   const router = useRouter();
@@ -44,9 +49,7 @@ function LoginForm() {
       setCustomer(result.customerId, result.name, result.email);
       router.replace(redirect);
     } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "Login failed. Please try again."
-      );
+      setError(friendlyAuthError(err, "Login failed. Please try again."));
     } finally {
       setLoading(false);
     }

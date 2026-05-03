@@ -8,7 +8,12 @@ import {
   useCustomer,
   useMantarayStore,
 } from "@mantaray-digital/store-sdk/react";
-import { useAuthStore, useAuthHydrated, getSafeRedirect } from "@/stores/auth-store";
+import {
+  useAuthStore,
+  useAuthHydrated,
+  getSafeRedirect,
+  friendlyAuthError,
+} from "@/stores/auth-store";
 
 function RegisterForm() {
   const router = useRouter();
@@ -88,11 +93,7 @@ function RegisterForm() {
       setCustomer(loginResult.customerId, loginResult.name, loginResult.email);
       router.replace(redirect);
     } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Registration failed. Please try again."
-      );
+      setError(friendlyAuthError(err, "Registration failed. Please try again."));
     } finally {
       setLoading(false);
     }
@@ -208,9 +209,11 @@ function RegisterForm() {
               </label>
               <input
                 type="tel"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder="+20 123 456 7890"
+                onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
+                placeholder="201234567890"
                 className="w-full border border-[#2a2a2a] bg-transparent px-4 py-3 text-sm text-[#e8e2d8] outline-none transition-colors placeholder:text-[#4a4a4a] focus:border-[#c8a96e]"
                 style={{ fontFamily: "var(--font-body)" }}
               />

@@ -45,3 +45,20 @@ export function getSafeRedirect(param: string | null): string {
   }
   return param;
 }
+
+// Convex wraps server errors with a "[Request ID: ...] Server Error\nUncaught
+// Error: CODE: message\n  at handler (...)" envelope. Pull just the human
+// "message" out of the last CODE: text match and discard the rest.
+export function friendlyAuthError(err: unknown, fallback: string): string {
+  if (!(err instanceof Error)) return fallback;
+  const matches = [
+    ...err.message.matchAll(
+      /[A-Z][A-Z0-9_]{3,}:\s*([^\n]+?)(?=\s*\n|\s+at\s|$)/g
+    ),
+  ];
+  if (matches.length > 0) {
+    const text = matches[matches.length - 1][1].trim();
+    if (text) return text;
+  }
+  return fallback;
+}
