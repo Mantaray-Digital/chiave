@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { DOORS, STUDIO_IMAGES } from "@/lib/constants";
+import { DOORS } from "@/lib/constants";
 import type { Door } from "@/types";
 import { SectionHeader } from "@/components/atoms/SectionHeader";
 import { StudioGallery } from "@/components/organisms/StudioGallery";
@@ -18,7 +18,7 @@ export default function StudioPage() {
       <section className="grain relative flex h-[70vh] items-end overflow-hidden">
         {/* Background image */}
         <Image
-          src="/images/studio/Screenshot 2026-03-26 144106.png"
+          src="/images/doors/scenes/harry-potter-station/02.jpg"
           alt="Chiave Studio"
           fill
           priority
@@ -78,35 +78,48 @@ export default function StudioPage() {
             <Link
               key={door.id}
               href="/studio"
-              className="reveal group relative flex flex-col rounded-sm bg-[#1a1a1a] p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a]"
+              className="reveal group relative flex flex-col overflow-hidden rounded-sm bg-[#1a1a1a] transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a]"
               style={{
                 borderLeft: `4px solid ${door.color}`,
                 transitionDelay: `${index * 0.1}s`,
               }}
             >
-              <span
-                className="mb-2 text-sm font-light"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  color: door.color,
-                }}
-              >
-                {String(door.number).padStart(2, "0")}
-              </span>
+              <div className="relative aspect-square w-full overflow-hidden bg-[#0a0a0a]">
+                <Image
+                  src={door.image}
+                  alt={door.name}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/20 to-transparent" />
+              </div>
 
-              <h3
-                className="mb-2 text-lg font-light text-[#e8e2d8] md:text-xl"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {door.name}
-              </h3>
+              <div className="flex flex-col p-6">
+                <span
+                  className="mb-2 text-sm font-light"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    color: door.color,
+                  }}
+                >
+                  {String(door.number).padStart(2, "0")}
+                </span>
 
-              <p
-                className="text-xs leading-relaxed text-[#8a8278] md:text-sm"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {door.description}
-              </p>
+                <h3
+                  className="mb-2 text-lg font-light text-[#e8e2d8] md:text-xl"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {door.name}
+                </h3>
+
+                <p
+                  className="text-xs leading-relaxed text-[#8a8278] md:text-sm"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  {door.description}
+                </p>
+              </div>
             </Link>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { DOORS } from "@/lib/constants";
 import type { Door } from "@/types";
@@ -98,7 +99,7 @@ export default function Home() {
             <Link
               key={door.id}
               href="/studio"
-              className={`reveal group relative flex flex-col rounded-sm bg-[#1a1a1a] p-8 transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a] ${
+              className={`reveal group relative flex flex-col overflow-hidden rounded-sm bg-[#1a1a1a] transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a] ${
                 index === 6 ? "md:col-start-1 lg:col-start-2" : ""
               }`}
               style={{
@@ -106,39 +107,53 @@ export default function Home() {
                 transitionDelay: `${index * 0.1}s`,
                 boxShadow: "0 0 0 rgba(0,0,0,0)",
               }}
-              onMouseEnter={undefined}
             >
-              {/* Hover shadow is handled via CSS inline workaround with group */}
               <style>{`
                 [data-door-id="${door.id}"]:hover {
                   box-shadow: 0 8px 30px ${door.color}22;
                 }
               `}</style>
-              <div data-door-id={door.id} className="absolute inset-0" />
+              <div
+                data-door-id={door.id}
+                className="pointer-events-none absolute inset-0 z-20"
+              />
 
-              <span
-                className="mb-4 text-sm font-light"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  color: door.color,
-                }}
-              >
-                {String(door.number).padStart(2, "0")}
-              </span>
+              <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#0a0a0a]">
+                <Image
+                  src={door.image}
+                  alt={door.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/30 to-transparent" />
+              </div>
 
-              <h3
-                className="mb-3 text-2xl font-light text-[#e8e2d8]"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {door.name}
-              </h3>
+              <div className="flex flex-col p-8">
+                <span
+                  className="mb-4 text-sm font-light"
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    color: door.color,
+                  }}
+                >
+                  {String(door.number).padStart(2, "0")}
+                </span>
 
-              <p
-                className="text-sm leading-relaxed text-[#8a8278]"
-                style={{ fontFamily: "var(--font-body)" }}
-              >
-                {door.description}
-              </p>
+                <h3
+                  className="mb-3 text-2xl font-light text-[#e8e2d8]"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  {door.name}
+                </h3>
+
+                <p
+                  className="text-sm leading-relaxed text-[#8a8278]"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  {door.description}
+                </p>
+              </div>
             </Link>
           ))}
         </div>
