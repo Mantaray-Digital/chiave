@@ -16,7 +16,7 @@ export default function ArthausPage() {
       <section className="grain relative flex h-[70vh] items-center justify-center overflow-hidden">
         {/* Background image */}
         <Image
-          src="/images/arthaus/Screenshot 2026-03-26 144928.png"
+          src="/images/arthaus/collections/half-carved-face/01.jpg"
           alt="Arthaus Egypt — sculptural stone sink"
           fill
           sizes="100vw"
