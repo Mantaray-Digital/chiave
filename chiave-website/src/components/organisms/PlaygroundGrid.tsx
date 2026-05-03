@@ -1,19 +1,14 @@
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
 import { PLAYGROUND_ITEMS } from "@/lib/constants";
-import { LightboxProvider, useLightbox } from "@/components/atoms/Lightbox";
 
-function GridInner() {
-  const { open } = useLightbox();
-
+export function PlaygroundGrid() {
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {PLAYGROUND_ITEMS.map((item, index) => (
-        <button
+        <Link
           key={item.id}
-          type="button"
-          onClick={() => open(item.image)}
+          href={`/playground/${item.id}`}
           className="reveal group relative aspect-square overflow-hidden rounded-sm bg-[#1a1a1a]"
           style={{ transitionDelay: `${(index % 4) * 0.1}s` }}
         >
@@ -25,7 +20,6 @@ function GridInner() {
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
           />
 
-          {/* Hover overlay with + icon */}
           <div className="absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
             <svg
               width="32"
@@ -53,16 +47,8 @@ function GridInner() {
               />
             </svg>
           </div>
-        </button>
+        </Link>
       ))}
     </div>
-  );
-}
-
-export function PlaygroundGrid() {
-  return (
-    <LightboxProvider>
-      <GridInner />
-    </LightboxProvider>
   );
 }

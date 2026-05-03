@@ -1,20 +1,15 @@
-"use client";
-
 import Image from "next/image";
+import Link from "next/link";
 import { STUDIO_IMAGES } from "@/lib/constants";
-import { LightboxProvider, useLightbox } from "@/components/atoms/Lightbox";
 
-function GalleryGrid() {
-  const { open } = useLightbox();
-
+export function StudioGallery() {
   return (
     <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
       {STUDIO_IMAGES.map((img, index) => (
-        <button
+        <Link
           key={img.id}
-          type="button"
-          onClick={() => open(img.image)}
-          className={`reveal group relative aspect-square overflow-hidden rounded-sm bg-[#1a1a1a]`}
+          href={`/studio/${img.id}`}
+          className="reveal group relative aspect-square overflow-hidden rounded-sm bg-[#1a1a1a]"
           style={{ transitionDelay: `${(index % 4) * 0.1}s` }}
         >
           <Image
@@ -25,7 +20,6 @@ function GalleryGrid() {
             className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
 
-          {/* Hover overlay */}
           <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
             <span
               className="p-4 text-xs font-medium uppercase tracking-[0.2em] text-[#e8e2d8]"
@@ -34,16 +28,8 @@ function GalleryGrid() {
               {img.label}
             </span>
           </div>
-        </button>
+        </Link>
       ))}
     </div>
-  );
-}
-
-export function StudioGallery() {
-  return (
-    <LightboxProvider>
-      <GalleryGrid />
-    </LightboxProvider>
   );
 }
