@@ -5,6 +5,7 @@ export interface Door {
   description: string;
   color: string;
   icon: string; // lucide icon name
+  image: string;
 }
 
 export interface ArthausPiece {
@@ -20,12 +21,14 @@ export interface PlaygroundItem {
   id: string;
   title: string;
   image: string;
+  description: string;
 }
 
 export interface StudioImage {
   id: string;
   label: string;
   image: string;
+  description: string;
 }
 
 // Re-export SDK types for convenience
