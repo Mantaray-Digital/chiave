@@ -15,7 +15,7 @@ export default function PlaygroundPage() {
       <section className="grain relative flex h-[70vh] items-end overflow-hidden">
         {/* Background image */}
         <Image
-          src="/images/playground/Screenshot 2026-03-26 145351.png"
+          src="/images/chivoo-playground/urbo/1.jpeg"
           alt="Chiave Playground"
           fill
           priority
