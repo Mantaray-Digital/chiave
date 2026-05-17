@@ -49,6 +49,23 @@ async function checkOverflow(page: import("@playwright/test").Page) {
   await mkdir(OUT, { recursive: true });
   const browser = await chromium.launch();
 
+  // Pre-warm: trigger first-time compile for every route so later passes are fast.
+  log(`Pre-warming routes...`);
+  {
+    const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+    const page = await ctx.newPage();
+    for (const route of ROUTES) {
+      const t0 = Date.now();
+      try {
+        await page.goto(BASE + route, { waitUntil: "domcontentloaded", timeout: 90000 });
+        log(`  warmed ${route} in ${Date.now() - t0}ms`);
+      } catch (e) {
+        log(`  WARM FAIL ${route}: ${String(e).slice(0, 120)}`);
+      }
+    }
+    await ctx.close();
+  }
+
   for (const vp of VIEWPORTS) {
     log(`\n--- viewport ${vp.name} (${vp.width}x${vp.height}) ---`);
     const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
@@ -56,9 +73,9 @@ async function checkOverflow(page: import("@playwright/test").Page) {
 
     for (const route of ROUTES) {
       try {
-        await page.goto(BASE + route, { waitUntil: "domcontentloaded", timeout: 20000 });
-        await page.waitForLoadState("load", { timeout: 8000 }).catch(() => {});
-        await page.waitForTimeout(300);
+        await page.goto(BASE + route, { waitUntil: "domcontentloaded", timeout: 45000 });
+        await page.waitForLoadState("load", { timeout: 12000 }).catch(() => {});
+        await page.waitForTimeout(400);
       } catch (e) {
         findings.push({ route, viewport: vp.name, kind: "nav-error", detail: String(e).slice(0, 200) });
         log(`  ${route}: NAV ERROR`);
@@ -86,9 +103,9 @@ async function checkOverflow(page: import("@playwright/test").Page) {
 
     if (vp.isMobile) {
       log(`  testing hamburger menu...`);
-      await page.goto(BASE + "/", { waitUntil: "domcontentloaded", timeout: 20000 });
-      await page.waitForLoadState("load", { timeout: 8000 }).catch(() => {});
-      await page.waitForTimeout(500);
+      await page.goto(BASE + "/", { waitUntil: "domcontentloaded", timeout: 45000 });
+      await page.waitForLoadState("load", { timeout: 12000 }).catch(() => {});
+      await page.waitForTimeout(600);
 
       const burger = page.locator('button[aria-label="Open menu"]');
       const burgerVisible = await burger.isVisible().catch(() => false);
