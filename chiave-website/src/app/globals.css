@@ -150,9 +150,13 @@
 }
 
 /* Animations */
+/* NOTE: do not animate `transform` on <body>. A non-none transform on an
+   ancestor turns it into the containing block for position:fixed descendants
+   (Navbar mobile-menu overlay, lightbox, etc.), and Chrome leaves an identity
+   matrix after the animation finishes — which silently breaks fixed layout. */
 @keyframes page-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: none; }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes hero-reveal {
