@@ -77,7 +77,7 @@ export default function StudioPage() {
           {DOORS.map((door: Door, index: number) => (
             <Link
               key={door.id}
-              href="/studio"
+              href={door.name === "Sculptures" ? "/sculptures" : "/studio"}
               className="reveal group relative flex flex-col overflow-hidden rounded-sm bg-[#1a1a1a] transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a]"
               style={{
                 borderLeft: `4px solid ${door.color}`,

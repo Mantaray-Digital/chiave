@@ -31,6 +31,19 @@ export interface StudioImage {
   description: string;
 }
 
+export interface Sculpture {
+  id: string;            // CH-S01 .. CH-S54
+  name: string;
+  height: number;        // cm
+  width?: number;        // cm (some pieces are vertical-only)
+  colors: string;        // free-form (usually "All colors")
+  priceEgp: number;
+  priceNote?: string;    // "per one", "set for 40K", etc.
+  inStock: boolean;
+  description: string;
+  images: string[];      // public/ paths, at least one
+}
+
 // Re-export SDK types for convenience
 export type {
   Product as SDKProduct,
