@@ -4,6 +4,9 @@ import Link from "next/link";
 import { DOORS } from "@/lib/constants";
 import type { Door } from "@/types";
 import { SectionHeader } from "@/components/atoms/SectionHeader";
+import { HomeShopPreview } from "@/components/organisms/HomeShopPreview";
+import { HomeCharactersPreview } from "@/components/organisms/HomeCharactersPreview";
+import { HomeArthausPreview } from "@/components/organisms/HomeArthausPreview";
 
 export const metadata: Metadata = {
   title: "Chiave — Unlock Creative Vision",
@@ -86,10 +89,10 @@ export default function Home() {
         </span>
       </section>
 
-      {/* ────────────────────── Seven Doors Section ─────────────────────── */}
+      {/* ────────────────────── 01 — Seven Doors Section ─────────────────────── */}
       <section className="px-6 py-32 md:px-12 lg:px-24">
         <SectionHeader
-          label="The World of Chiave"
+          label="01 — The World of Chiave Studio"
           title={"Seven Doors,\nOne Vision"}
           subtitle="Each door — a different language of creation"
         />
@@ -164,6 +167,15 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* ───────────── 02 — Chiave Shop (Products) ───────────── */}
+      <HomeShopPreview />
+
+      {/* ───────── 03 — Chiave X chivoo.playground (Characters) ────────── */}
+      <HomeCharactersPreview />
+
+      {/* ───────── 04 — Chiave X Arthaus (Sinks & Pots) ────────── */}
+      <HomeArthausPreview />
 
       {/* ───────────────────── Philosophy Section ──────────────────────── */}
       <section className="reveal px-6 py-24 md:px-12 lg:px-24">

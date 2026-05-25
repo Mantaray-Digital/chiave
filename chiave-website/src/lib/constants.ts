@@ -195,7 +195,7 @@ export const ARTHAUS_PIECES: ArthausPiece[] = [
     name: "The Half Carved Face Sink",
     description:
       "A striking sculptural sink carved from natural stone, blending raw organic texture with refined artisan craftsmanship.",
-    image: "/images/arthaus/collections/half-carved-face/01.jpg",
+    image: "/images/arthaus/collections/half-carved-face/02.jpg",
     ctaText: "Explore Piece",
   },
   {
@@ -204,7 +204,7 @@ export const ARTHAUS_PIECES: ArthausPiece[] = [
     name: "Artisan Vessel",
     description:
       "Hand-shaped ceramic vessel with an earthy, tactile finish that celebrates the beauty of imperfection.",
-    image: "/images/arthaus/collections/harmony/12.jpg",
+    image: "/images/arthaus/collections/harmony/WhatsApp-Image-2024-11-28-at-02.32.21-0e2decba.jpg",
     ctaText: "Explore Piece",
   },
   {
@@ -213,7 +213,7 @@ export const ARTHAUS_PIECES: ArthausPiece[] = [
     name: "Sculptural Form",
     description:
       "An abstract sculptural form exploring the tension between mass and negative space.",
-    image: "/images/arthaus/collections/standing-kid/01.jpg",
+    image: "/images/arthaus/collections/standing-kid/02.jpg",
     ctaText: "Explore Piece",
   },
   {
@@ -222,7 +222,7 @@ export const ARTHAUS_PIECES: ArthausPiece[] = [
     name: "Heritage Collection",
     description:
       "A curated collection of heritage-inspired objects that bridge traditional craft and contemporary design.",
-    image: "/images/arthaus/collections/bleeding-greek-01/01.jpg",
+    image: "/images/arthaus/collections/bleeding-greek-01/02.jpg",
     ctaText: "Explore Piece",
   },
 ];
