@@ -1,0 +1,134 @@
+code  item name       dimensions approx.               colors      image  price
+                      height 160 cm                    all colors
+CH-S01 kaws original  width 70 cm                                                34000
+                                                                                 38000
+CH-S02 kaws pump      height 180 cm                    all colors                35000
+                      width 85 cm                                                34000
+                                                                                 23000
+CH-S03 kaws bunny     height 180 cm                    all colors                32000
+                      width 60 cm                                                38000
+                                                                                 52000
+CH-S04 kaws hand on eyes height 160 cm                 all colors
+                                          width 70 cm
+
+CH-S05 kaws hand on eyes height 130 cm                 all colors
+                                          width 45 cm
+
+CH-S06 hairy kaws     height 170 cm                    all colors
+                      width 70 cm
+
+CH-S07 hoodie gun     height 170 cm                    all colors
+                      width 60 cm
+
+CH-S08 urban bunny    height 220 cm                    all colors
+                      width 90 cm
+CH-S09 bearbrick original  height 120 cm  all colors  25000
+                           width 60 cm                28000
+                                                      39000
+CH-S10 bearbrick crown     height 150 cm  all colors  28000
+                           width 90 cm                40000
+                                                      45000
+CH-S11 large scale dog     height 170 cm  all colors  22000
+                           width 180 cm               70000
+                                                      45000
+CH-S12 bulldog             height 100 cm  all colors
+
+CH-S13 giraffe             height 260 cm  all colors
+
+CH-S13 giraffe             height 300 cm  all colors
+
+CH-S14 abstract panther    height 45 cm   all colors
+                           width 160 cm
+
+CH-S15 large size kong     height 300 cm  all colors
+                           width 200 cm
+
+CH-S16 medium size kong    height 210 cm  all colors
+                           width 150 cm
+CH-S17 small size kong     height 90 cm                all colors                                  12500
+                           width 70 cm                                                             22000
+                                                                                                   14000
+CH-S18 lady lighting unit  height 115 cm               all colors                                  12500
+                           width 65 cm                                                             21500
+                                                                         12000 per one
+CH-S19 abstract lighting unit height 180 cm            all colors        all set for 40K
+                                          width 70 cm  (rough texture)                             18000
+                                                                                                   13500
+CH-S20 abstract lighting unit height 160 cm            all colors                                  20000
+                                          width 70 cm  (smooth texture)
+
+CH-S21 abstract sculpture  height 170 cm               all colors
+                           width 35 cm
+
+CH-S22 abstract sculpture  height 170 cm               all colors
+                           width 35 cm
+
+CH-S23 abstract lady       height 160 cm               all colors
+              sculpture    width 70 cm
+
+CH-S24 abstract sculpture  height 160 cm               all colors
+                           width 70 cm
+
+CH-S25 abstract sculpture  height 120 cm               all colors
+                           width 60 cm
+CH-S26 abstract sculpture  height 200 cm  all colors                            32000
+                           width 60 cm                55000 per one
+                                                      all set for 120,000
+CH-S27 abstract sculpture  height 220 cm  all colors
+                           height 210 cm  all colors                            17500
+                           height 200 cm              all set for 32000
+
+CH-S28 Lighting sculpture height 190 cm                                         15000
+                                                                                22500
+CH-S29 Lighting sculpture  height 160 cm  all colors                            15000
+                           height 110 cm  all colors                            12500
+                           height 80 cm                                         25000
+
+CH-S30 mickey wall portrait height 60 cm
+
+CH-S31 suit kaws           height 120 cm  all colors
+
+CH-S32 kiddo lighting      height 60 cm   all colors
+
+CH-S33 half head table     height 60 cm   all colors
+
+CH-S34 sitting figure      height 150 cm  all colors
+CH-S35 half giraffe   height 160 cm  all colors  27500
+                                                 28500
+CH-S36 cactus         height 120 cm  all colors
+CH-S37 tiger face     width 70 cm                 8500
+                                                 33000
+                      height 30 cm   all colors  35000
+                                                 32000
+CH-S38 man face wall  height 100 cm  all colors  28500
+                                                 15000
+CH-S39 half horse     height 140 cm  all colors  28500
+
+CH-S40 whale tail     height 160 cm  all colors
+
+CH-S41 dancing bear   height 100 cm  all colors
+
+CH-S42 einstien lamp  height 60 cm   all colors
+
+CH-S43 dancing bear   height 100 cm  all colors
+CH-S44 dancing bear     height 100 cm  all colors  28500
+                                                   22500
+CH-S45 abstract figure  height 120 cm  all colors  22000
+                                                   18000
+CH-S46 abstract figure  height 180 cm  all colors  52000
+                                                   30000
+CH-S47 abstract figure  height 170 cm  all colors  18000
+                                                   32000
+CH-S48 abstract figure  height 200 cm  all colors  18000
+
+CH-S49 abstract figure  height 170 cm  all colors
+
+CH-S50 abstract figure  height 100 cm  all colors
+
+CH-S51 abstract figure  height 80 cm   all colors
+
+CH-S52 abstract figure  height 150 cm  all colors
+CH-S53 abstract figure  height 70 cm   all colors  15000
+                                                   25000
+CH-S54 abstract figure  height 150 cm  all colors
+
