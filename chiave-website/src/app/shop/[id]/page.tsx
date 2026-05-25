@@ -11,6 +11,7 @@ import {
   useCart,
   useStoreConfig,
 } from "@mantaray-digital/store-sdk/react";
+import type { ProductSearchResult } from "@mantaray-digital/store-sdk";
 import { formatPrice } from "@/lib/format-price";
 import { useCartToast } from "@/components/atoms/CartToast";
 
@@ -51,6 +52,8 @@ export default function ProductPage() {
   const { addItem } = useCart();
   const { showToast } = useCartToast();
   const { data: storeConfig } = useStoreConfig();
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const settings = storeConfig?.settings ?? {
     currencySymbol: "$",
     currencyPosition: "before" as const,
@@ -97,8 +100,7 @@ export default function ProductPage() {
     : null;
 
   const images = product.images.length > 0 ? product.images : ["/images/placeholder.png"];
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const safeSelected = Math.min(selectedImage, images.length - 1);
 
   return (
     <>
@@ -130,7 +132,7 @@ export default function ProductPage() {
               onClick={() => setLightboxOpen(true)}
             >
               <Image
-                src={images[selectedImage]}
+                src={images[safeSelected]}
                 alt={product.name}
                 fill
                 priority
@@ -167,7 +169,7 @@ export default function ProductPage() {
                     key={i}
                     onClick={() => setSelectedImage(i)}
                     className={`relative h-20 w-20 flex-shrink-0 overflow-hidden rounded border-2 transition-colors ${
-                      i === selectedImage
+                      i === safeSelected
                         ? "border-[#c8a96e]"
                         : "border-transparent hover:border-[#2a2a2a]"
                     }`}
@@ -199,7 +201,7 @@ export default function ProductPage() {
                 &times;
               </button>
               <img
-                src={images[selectedImage]}
+                src={images[safeSelected]}
                 alt={product.name}
                 className="relative z-10 max-h-[90vh] max-w-[90vw] object-contain"
                 onClick={(e) => e.stopPropagation()}
@@ -353,13 +355,6 @@ export default function ProductPage() {
     </>
   );
 }
-
-/**
- * Minimal card for related products (ProductSearchResult shape).
- * ProductSearchResult has `imageUrl` (single string) instead of `images[]`,
- * so we can't use the full ProductCard directly.
- */
-import type { ProductSearchResult } from "@mantaray-digital/store-sdk";
 
 function RelatedProductCard({ product }: { product: ProductSearchResult }) {
   const { data: storeConfig } = useStoreConfig();
