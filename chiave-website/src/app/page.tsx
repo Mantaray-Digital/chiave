@@ -98,7 +98,13 @@ export default function Home() {
           {DOORS.map((door: Door, index: number) => (
             <Link
               key={door.id}
-              href={door.name === "Sculptures" ? "/sculptures" : "/studio"}
+              href={
+                door.name === "Sculptures"
+                  ? "/sculptures"
+                  : door.name === "Visual Arts"
+                    ? "/visual-arts"
+                    : "/studio"
+              }
               className={`reveal group relative flex flex-col overflow-hidden rounded-sm bg-[#1a1a1a] transition-all duration-500 hover:-translate-y-1 hover:bg-[#2a2a2a] ${
                 index === 6 ? "md:col-start-1 lg:col-start-2" : ""
               }`}

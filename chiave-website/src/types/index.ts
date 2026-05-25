@@ -31,6 +31,13 @@ export interface StudioImage {
   description: string;
 }
 
+export interface VisualArt {
+  id: string;            // VA-01, VA-02, ...
+  name: string;
+  originalImage: string; // raw artwork (public/ path)
+  portraitImage: string; // wall-portrait mockup (public/ path)
+}
+
 export interface Sculpture {
   id: string;            // CH-S01 .. CH-S54
   name: string;
